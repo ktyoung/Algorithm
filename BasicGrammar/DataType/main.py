@@ -157,3 +157,86 @@ remove_set = {3, 5}
 # remove_set에 포함되지 않은 값만을 저장
 result = [i for i in a if i not in remove_set]  # a의 원소가 remove_set에 포함되어 있지 않을 때만 result 리스트 변수에 저장
 print(result)
+
+# 3. 문자열 자료형
+## 3-1. 문자열 초기화
+data = "Hello World"
+print(data)
+
+data = "Don't you know \"Python\"?"
+print(data)
+
+## 3-2. 문자열 연산
+str1 = "Hello"
+str2 = "World"
+print(str1 + " " + str2)    # 문자열 더하기
+
+str3 = "String"
+print(str3 * 3)             # 문자열 반복
+
+str4 = "ABCDEF"
+print(str4[1])              # 문자열 인덱싱
+print(str4[2 : 4])          # 문자열 슬라이싱
+
+# 4. 튜플 자료형
+#    : 리스트와 비슷하지만 한 번 선언된 값을 바꿀 수 없고, 소괄호()를 사용
+a = (1, 2, 3, 4)    # 튜플 선언
+print(a)
+# a[2] = 7          # 튜플의 특정한 값을 변경하면 에러 발생
+
+# 5. 사전 자료형
+#    : 키와 값의 쌍을 데이터로 가지는 자료형
+#    : 검색 및 수정에 있어서 O(1)의 시간에 처리 가능 → 리스트보다 빠르게 동작함
+data = dict()
+data["사과"] = "Apple"
+data["바나나"] = "Banana"
+data["코코넛"] = "Coconut"
+print(data)
+
+## 5-1. 사전 자료형에 특정 원소가 있는지 검사(리스트나 튜플에서도 사용 가능)
+##      : 원소 in 사전
+if "사과" in data:
+    print("'사과'를 키로 가지는 데이터가 존재합니다.")
+
+## 5-2. 사전 자료형 관련 함수
+key_list = data.keys()      # 키 데이터만 담은 리스트 → keys() 함수
+print(key_list)
+
+value_list = data.values()  # 값 데이터만 담은 리스트 → values() 함수
+print(value_list)
+
+for key in key_list:        # 각 키에 따른 값을 하나씩 출력
+    print(data[key])
+
+# 6. 집합 자료형
+#    : 중복을 허용하지 않음, 순서가 없음(인덱싱 불가)
+#    : 시간 복잡도는 사전 자료형과 마찬가지로 O(1)
+
+## 6-1. 집합 자료형 초기화
+data = set([1, 1, 2, 3, 4, 4, 5])   # 집합 자료형 초기화 방법 1
+print(data)
+
+data = {1, 1, 2, 3, 4, 4, 5}        # 집합 자료형 초기화 방법 2
+print(data)
+
+## 6-2. 집합 자료형 연산
+a = set([1, 2, 3, 4, 5])
+b = set([3, 4, 5, 6, 7])
+
+print("합집합: ", a | b)   # 합집합
+print("교집합: ", a & b)   # 교집합
+print("차집합: ", a - b)   # 차집합
+
+## 6-3. 집합 자료형 관련 함수
+##      : add(), remove() 함수는 시간 복잡도가 O(1)
+data = set([1, 2, 3])
+print("기본 집합: ", data)
+
+data.add(4)                     # 새로운 원소 추가 : add()
+print("원소 추가: ", data)
+
+data.update([5, 6])             # 여러 개의 원소 추가 : update()
+print("여러 원소 추가: ", data)
+
+data.remove(3)                  # 특정 원소 제거 : remove()
+print("3  삭제: ", data)
