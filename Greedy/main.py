@@ -33,3 +33,15 @@ while True:
     m -= 1              # 덧셈을 수행할 때마다 m을 1씩 감소
 
 print(result)           # 최종 답안 출력
+
+# 문제 2. 숫자 카드 게임
+n, m = map(int, input().split())
+
+result = 0
+
+for i in range(n):
+    data = list(map(int, input().split()))
+    min_value = min(data)
+    result = max(result, min_value)
+
+print(result)
