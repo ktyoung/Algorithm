@@ -66,3 +66,15 @@ def quick_sort(array) :
     return quick_sort(left_side) + [pivot] + quick_sort(right_side)
 
 print(quick_sort(array))
+
+# 6-6. 계수 정렬 소스코드
+array = [7, 5, 9, 0, 3, 1, 6, 2, 9, 1, 4, 8, 0, 5, 2]
+
+count = [0] * (max(array) + 1)
+
+for i in range(len(array)) :
+    count[array[i]] += 1
+
+for i in range(len(count)) :
+    for j in range(count[i]) :
+        print(i, end=" ")
