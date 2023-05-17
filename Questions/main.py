@@ -100,3 +100,20 @@ def solution(food_times, k):
 
     result = sorted(q, key= lambda x: x[1])
     return result[(k - sum_value) % length][1]
+
+# 2. 구현
+## 01. 럭키 스트레이트
+n = input()
+length = len(n)
+summary = 0
+
+for i in range(length // 2):
+    summary += int(n[i])
+
+for i in range(length // 2, length):
+    summary -= int(n[i])
+
+if summary == 0:
+    print("LUCKY")
+else:
+    print("READY")
