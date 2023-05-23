@@ -260,3 +260,40 @@ def simulate():
     return time
 
 print(simulate())
+
+## 06. 기둥과 보 설치
+def possible(ans):
+    for i in ans:
+        x,y,type = i
+        if type == 0:
+            if y==0 :
+                continue
+            if [x-1,y,1] in ans or [x,y,1] in ans :
+                continue
+            if [x,y-1,0] in ans :
+                continue
+        else :
+            if [x,y-1,0] in ans or [x+1,y-1,0] in ans :
+                continue
+            if [x-1,y,1] in ans and [x+1,y,1] in ans :
+                continue
+        return False
+
+    return True
+def solution(n, build_frame):
+    answer = []
+    for i in build_frame:
+        if i[3] == 0 :
+            answer.remove([i[0],i[1],i[2]])
+
+            if not possible(answer) :
+                answer.append([i[0],i[1],i[2]])
+
+        else :
+            answer.append([i[0],i[1],i[2]])
+
+            if not possible(answer):
+                answer.remove([i[0],i[1],i[2]])
+
+    answer.sort()
+    return answer
