@@ -264,18 +264,18 @@ print(simulate())
 ## 06. 기둥과 보 설치
 def possible(ans):
     for i in ans:
-        x,y,type = i
+        x, y, type = i
         if type == 0:
-            if y==0 :
+            if y == 0 :
                 continue
-            if [x-1,y,1] in ans or [x,y,1] in ans :
+            if [x - 1, y, 1] in ans or [x, y, 1] in ans :
                 continue
-            if [x,y-1,0] in ans :
+            if [x, y - 1, 0] in ans :
                 continue
         else :
-            if [x,y-1,0] in ans or [x+1,y-1,0] in ans :
+            if [x, y - 1, 0] in ans or [x + 1, y - 1, 0] in ans :
                 continue
-            if [x-1,y,1] in ans and [x+1,y,1] in ans :
+            if [x - 1, y, 1] in ans and [x + 1, y, 1] in ans :
                 continue
         return False
 
@@ -284,16 +284,47 @@ def solution(n, build_frame):
     answer = []
     for i in build_frame:
         if i[3] == 0 :
-            answer.remove([i[0],i[1],i[2]])
+            answer.remove([i[0], i[1], i[2]])
 
             if not possible(answer) :
-                answer.append([i[0],i[1],i[2]])
+                answer.append([i[0], i[1], i[2]])
 
         else :
-            answer.append([i[0],i[1],i[2]])
+            answer.append([i[0], i[1], i[2]])
 
             if not possible(answer):
-                answer.remove([i[0],i[1],i[2]])
+                answer.remove([i[0], i[1], i[2]])
 
     answer.sort()
     return answer
+
+## 07. 치킨 배달
+from itertools import combinations
+
+n , m = map(int,input().split())
+data = [list(map(int,input().split())) for _ in range(n)]
+chicken , house = [] , []
+
+for r in range(n):
+    for c in range(n):
+        if data[r][c] == 1:
+            house.append((r,c))
+        elif data[r][c] == 2:
+            chicken.append((r,c))
+
+candidates = list(combinations(chicken,m))
+
+def get_sum(candidate):
+    result = 0
+    for hx,hy in house:
+        temp = 1e9
+        for cx,cy in candidate:
+            temp = min(temp, abs(hx-cx) + abs(hy-cy))
+        result += temp
+    return result
+
+result = 1e9
+for candidate in candidates:
+    result = min(result,get_sum(candidate))
+
+print(result)
