@@ -750,3 +750,16 @@ def solution(board):
                 q.append((next_pos, cost + 1))
                 visited.append(next_pos)
     return 0
+
+# 4. 정렬
+## 01. 국영수
+n = int(input())
+students = []
+
+for _ in range(n):
+    students.append(input().split())
+
+students.sort(key=lambda x: (-int(x[1]), int(x[2]), -int(x[3]), x[0]))
+
+for student in students:
+    print(student[0])
